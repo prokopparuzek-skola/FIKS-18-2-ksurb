@@ -43,8 +43,24 @@ func compute(num []uint8, vysledek uint64) bool {
 	}
 	qsort(num)
 	double(num)
-	fmt.Println(num)
-	return true
+	//fmt.Println(num)
+
+Compute:
+	for i := range num {
+		dif := sum - vysledek
+		for _, val := range num[i:] {
+			if uint64(val) <= dif {
+				dif -= uint64(val)
+			}
+			switch true {
+			case dif == 0:
+				return true
+			case dif < 0:
+				continue Compute
+			}
+		}
+	}
+	return false
 }
 
 func main() {
@@ -57,6 +73,11 @@ func main() {
 		for j := range num {
 			fmt.Scanf("%d", &num[j])
 		}
-		compute(num, X)
+		ans := compute(num, X)
+		if ans == true {
+			fmt.Println("LZE")
+		} else {
+			fmt.Println("NELZE")
+		}
 	}
 }

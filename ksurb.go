@@ -52,7 +52,7 @@ Compute:
 			if uint64(val) <= dif {
 				dif -= uint64(val)
 			}
-			switch true {
+			switch {
 			case dif == 0:
 				return true
 			case dif < 0:

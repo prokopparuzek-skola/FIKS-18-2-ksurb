@@ -15,7 +15,7 @@ func qsort(num []uint8) {
 
 	swap(num, 0, end)
 	for i := uint64(0); i < end; i++ {
-		if num[i] < pivot {
+		if num[i] > pivot {
 			swap(num, uint64(i), less)
 			less++
 		}
@@ -29,14 +29,21 @@ func qsort(num []uint8) {
 	}
 }
 
+func double(num []uint8) {
+	for i := range num {
+		num[i] *= 2
+	}
+}
+
 func compute(num []uint8, vysledek uint64) bool {
 	var sum uint64
 
 	for i := range num {
 		sum += uint64(num[i])
-		qsort(num)
-		fmt.Println(num)
 	}
+	qsort(num)
+	double(num)
+	fmt.Println(num)
 	return true
 }
 
